@@ -30,8 +30,11 @@ public class GamePanel extends JPanel {
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.WHITE);
-        g2.fillRect(this.game.getPlayerX(), this.game.getPlayerY(), this.tile_size, this.tile_size);
+        this.game.getPlayer().draw(g2);
         g2.dispose();
+    }
+
+    public int getTileSize() {
+        return this.tile_size;
     }
 }

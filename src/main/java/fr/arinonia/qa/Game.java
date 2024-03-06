@@ -1,6 +1,7 @@
 package fr.arinonia.qa;
 
 import fr.arinonia.qa.client.KeyHandler;
+import fr.arinonia.qa.entity.Player;
 import fr.arinonia.qa.ui.GameFrame;
 import fr.arinonia.qa.ui.GamePanel;
 
@@ -11,10 +12,7 @@ public class Game implements Runnable {
     private Thread game_thread;
     private final KeyHandler key_handler = new KeyHandler();
     private final int fps = 60;
-
-    private int playerX = 100;
-    private int playerY = 100;
-    private int playerSpeed = 4;
+    private final Player player = new Player(this);
 
     @Override
     public void run() {
@@ -32,7 +30,7 @@ public class Game implements Runnable {
             last_time = current_time;
             if (delta >= 1) {
                 update();
-                game_panel.repaint();
+                this.game_panel.repaint();
                 delta--;
                 draw_count++;
             }
@@ -45,18 +43,7 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        if (this.key_handler.isUp()) {
-            playerY -= playerSpeed;
-        }
-        if (this.key_handler.isDown()) {
-            playerY += playerSpeed;
-        }
-        if (this.key_handler.isLeft()) {
-            playerX -= playerSpeed;
-        }
-        if (this.key_handler.isRight()) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
     public void start() {
         this.game_frame = new GameFrame();
@@ -74,11 +61,15 @@ public class Game implements Runnable {
         this.game_thread.start();
     }
 
-    public int getPlayerX() {
-        return this.playerX;
+    public KeyHandler getKey_handler() {
+        return this.key_handler;
     }
 
-    public int getPlayerY() {
-        return this.playerY;
+    public GamePanel getGamePanel() {
+        return this.game_panel;
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 }
