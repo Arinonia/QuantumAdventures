@@ -1,6 +1,7 @@
 package fr.arinonia.qa.entity;
 
 import fr.arinonia.qa.Game;
+import fr.arinonia.qa.utils.Direction;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,7 +17,7 @@ public class Player extends Entity {
         this.setX(10);
         this.setY(100);
         this.setSpeed(4);
-        this.direction = "down";
+        this.direction = Direction.DOWN;
         this.getPlayerImages();
     }
 
@@ -38,24 +39,24 @@ public class Player extends Entity {
 
     public void update() {
         if (this.game.getKey_handler().isUp()) {
-            this.direction = "up";
+            this.direction = Direction.UP;
             this.setY(this.getY() - this.getSpeed());
         }
         if (this.game.getKey_handler().isDown()) {
-            this.direction = "down";
+            this.direction = Direction.DOWN;
             this.setY(this.getY() + this.getSpeed());
         }
         if (this.game.getKey_handler().isLeft()) {
-            this.direction = "left";
+            this.direction = Direction.LEFT;
             this.setX(this.getX() - this.getSpeed());
         }
         if (this.game.getKey_handler().isRight()) {
-            this.direction = "right";
+            this.direction = Direction.RIGHT;
             this.setX(this.getX() + this.getSpeed());
         }
         this.setSpriteCounter(this.getSpriteCounter() + 1);
 
-        if (this.getSpriteNum() > 10) {
+        if (this.getSpriteCounter() > 10) {
             if (this.getSpriteNum() == 1) {
                 this.setSpriteNum(2);
             } else if (this.getSpriteNum() == 2) {
@@ -68,28 +69,28 @@ public class Player extends Entity {
     public void draw(final Graphics2D g2) {
         BufferedImage image = null;
         switch (this.direction) {
-            case "up":
+            case UP:
                 if (this.getSpriteNum() == 1) {
                     image = this.up1;
                 } else if (this.getSpriteNum() == 2) {
                     image = this.up2;
                 }
                 break;
-            case "down":
+            case DOWN:
                 if (this.getSpriteNum() == 1) {
                     image = this.down1;
                 } else if (this.getSpriteNum() == 2) {
                     image = this.down2;
                 }
                 break;
-            case "left":
+            case LEFT:
                 if (this.getSpriteNum() == 1) {
                     image = this.left1;
                 } else if (this.getSpriteNum() == 2) {
                     image = this.left2;
                 }
                 break;
-            case "right":
+            case RIGHT:
                 if (this.getSpriteNum() == 1) {
                     image = this.right1;
                 } else if (this.getSpriteNum() == 2) {

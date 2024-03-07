@@ -1,5 +1,7 @@
 package fr.arinonia.qa.entity;
 
+import fr.arinonia.qa.utils.Direction;
+
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -8,7 +10,7 @@ public class Entity {
     protected int y;
     protected int speed;
     protected BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    protected String direction;
+    protected Direction direction;
     private int sprite_counter = 0;
     private int sprite_num = 1;
 
@@ -100,11 +102,11 @@ public class Entity {
         this.right2 = right2;
     }
 
-    public String getDirection() {
+    public Direction getDirection() {
         return this.direction;
     }
 
-    public void setDirection(final String direction) {
+    public void setDirection(final Direction direction) {
         this.direction = direction;
     }
 
