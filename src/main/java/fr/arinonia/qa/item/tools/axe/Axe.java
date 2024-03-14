@@ -1,0 +1,15 @@
+package fr.arinonia.qa.item.tools.axe;
+
+import fr.arinonia.qa.item.Ranks;
+import fr.arinonia.qa.item.TypeItem;
+import fr.arinonia.qa.item.tools.Tools;
+import fr.arinonia.qa.item.tools.TypeTools;
+import fr.arinonia.qa.item.tools.TypeUsage;
+
+import java.awt.image.BufferedImage;
+
+public class Axe extends Tools {
+    public Axe(String name, String description, int durability, int max_durability, Ranks ranks, BufferedImage texture) {
+        super(name, description, durability, max_durability, TypeTools.AXE, ranks, texture, TypeUsage.WOODCUTTER);
+    }
+}
